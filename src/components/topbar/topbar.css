@@ -1,0 +1,86 @@
+.topbar {
+  height: 44px;
+  padding-inline: 16px;
+  background-color: var(--color-primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar img {
+  width: 24px;
+  height: 24px;
+}
+
+.topbar .left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.topbar .logo-text {
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  gap: 4px;
+}
+
+.topbar .logo-text span:last-child {
+  color: var(--color-primary-accent);
+}
+
+.topbar .right {
+  position: relative;
+}
+
+.topbar .right img {
+  cursor: pointer;
+}
+
+.account-menu {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 200px;
+  box-shadow: var(--shadow-primary);
+  border-radius: 12px;
+  background-color: var(--color-white);
+  overflow: hidden;
+}
+
+.account-menu input {
+  outline: none;
+  border: none;
+  height: 50px;
+  padding-left: 8px;
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  background-color: var(--color-primary-light);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom: 1px solid var(--color-primary-dark);
+}
+
+.account-menu img {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.account-menu .menu-list {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+}
+
+.account-menu .menu-list .menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background-color: var(--color-primary-light);
+  cursor: pointer;
+  width: 100%;
+}

@@ -2,8 +2,13 @@
   min-height: calc(100vh - 44px);
 }
 
-.content > h3 {
+.content .top {
+  display: flex;
+  justify-content: space-between;
   padding: 24px 16px;
+}
+
+.content div > h3 {
   font-size: 32px;
   font-weight: 700;
   color: var(--color-primary-accent);

@@ -6,6 +6,17 @@
   gap: 24px;
 }
 
+.empty-list {
+  height: 600px;
+  display: flex;
+  align-items: center;
+}
+
+.empty-list span {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
 @media screen and (max-width: 768px) {
   .list {
     width: 90vw;

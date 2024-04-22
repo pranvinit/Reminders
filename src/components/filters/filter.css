@@ -1,0 +1,39 @@
+.filters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.filters button {
+  outline: none;
+  border: none;
+  padding: 4px 12px;
+  border-radius: var(--border-radius-lg);
+  background-color: #007aff;
+  color: var(--color-white);
+  cursor: pointer;
+}
+
+.filters button.active {
+  opacity: 0.8;
+}
+
+.filters button:nth-child(2) {
+  background-color: #5856d6;
+}
+
+.filters button:nth-child(3) {
+  background-color: #af52de;
+}
+
+@media screen and (max-width: 768px) {
+  .filters {
+    gap: 6px;
+  }
+
+  .filters button {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+}

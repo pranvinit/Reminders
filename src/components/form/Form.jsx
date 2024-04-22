@@ -9,14 +9,17 @@ const setFormData = (reminder) => ({
 });
 
 function Form({ id, reminder, onSave }) {
+  // Initialize info state with data from reminder or empty object
   const textInputRef = useRef(null);
   const [info, setInfo] = useState(setFormData(reminder));
 
+  // Set focus on text input and update info state with reminder data
   useEffect(() => {
     textInputRef.current.focus();
     setInfo(setFormData(reminder));
   }, [reminder]);
 
+  // Handle info input change
   const handleInfo = ({ target }) => {
     setInfo((prev) => ({
       ...prev,
@@ -24,10 +27,12 @@ function Form({ id, reminder, onSave }) {
     }));
   };
 
+  // Handle save button click
   const handleSave = (e) => {
     e.preventDefault();
     const { text, date, color, status } = info;
 
+    // Update reminder if id is set or add new reminder
     if (id) {
       onSave((prev) => {
         return prev.map((reminder) =>
@@ -48,9 +53,11 @@ function Form({ id, reminder, onSave }) {
       });
     }
 
+    // Reset form data
     setInfo(setFormData({}));
   };
 
+  // Remove active reminder from reminders and reset form data
   const handleRemove = () => {
     onSave((prev) => prev.filter((reminder) => reminder.id !== id));
     setInfo(setFormData({}));

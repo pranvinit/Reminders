@@ -1,0 +1,13 @@
+.list {
+  width: 60vw;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media screen and (max-width: 768px) {
+  .list {
+    width: 90vw;
+  }
+}

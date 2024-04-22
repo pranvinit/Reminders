@@ -21,4 +21,13 @@
 
   /* Box Shadows */
   --shadow-primary: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  /* Border Radius */
+  --border-radius-sm: 16px;
+  --border-radius-lg: 32px;
+
+  /* Z-Index */
+  --z-index-1: 10;
+  --z-index-2: 20;
+  --z-index-3: 30;
 }

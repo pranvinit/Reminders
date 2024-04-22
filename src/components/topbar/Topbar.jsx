@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./topbar.css";
 
-function Topbar() {
+function Topbar({ setReminders }) {
   const [name, setName] = useState(localStorage.getItem("name") || "Guest");
   const [accountMenuActive, setAccountMenuActive] = useState(false);
 
@@ -12,6 +12,13 @@ function Topbar() {
   const handleName = ({ target }) => {
     setName(target.value);
     localStorage.setItem("name", target.value);
+  };
+
+  const handleReset = () => {
+    setReminders([]);
+    localStorage.removeItem("reminders");
+    localStorage.removeItem("name");
+    setAccountMenuActive(false);
   };
 
   return (
@@ -44,8 +51,8 @@ function Topbar() {
             />
             <div className="menu-list">
               <div className="menu-item">
-                <img src="/assets/remove.png" alt="remove" />
-                <span>Clear All Data</span>
+                <img src="/assets/right-up.png" alt="remove" />
+                <span onClick={handleReset}>Clear All Data</span>
               </div>
             </div>
           </div>

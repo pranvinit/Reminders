@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 // Component imports
@@ -10,48 +10,42 @@ function App() {
   const [reminders, setReminders] = useState(
     localStorage.getItem("reminders")
       ? JSON.parse(localStorage.getItem("reminders"))
-      : [
-          {
-            id: 1,
-            text: "Example reminder",
-            date: "2021-12-31",
-            color: "blue",
-            status: "Pending",
-          },
-          {
-            id: 2,
-            text: "Example reminder 2",
-            date: "2021-12-31",
-            color: "green",
-            status: "Pending",
-          },
-          {
-            id: 3,
-            text: "Example reminder 3",
-            date: "2021-12-31",
-            color: "red",
-            status: "Pending",
-          },
-        ]
+      : []
   );
 
   const [addAction, setAddAction] = useState(false);
   const [activeReminderId, setActiveReminderId] = useState(null);
+
+  const saveToLS = (reminders) => {
+    localStorage.setItem("reminders", JSON.stringify(reminders));
+  };
+
+  const isFormActive = () => {
+    return addAction || activeReminderId;
+  };
+
+  const closeForm = () => {
+    setAddAction(false);
+    setActiveReminderId(null);
+  };
+
+  useEffect(() => {
+    closeForm();
+    saveToLS(reminders);
+  }, [reminders]);
 
   const handleAddAction = () => {
     setActiveReminderId(null);
     setAddAction(!addAction);
   };
 
-  const getFormInfo = () => {
+  const getActiveReminder = () => {
     return reminders.find((reminder) => reminder.id === activeReminderId) || {};
   };
 
-  console.log(reminders);
-
   return (
     <div className="App">
-      <Topbar />
+      <Topbar setReminders={setReminders} />
       <div className="content">
         <h3>
           {new Date().toLocaleDateString("en-US", {
@@ -59,16 +53,21 @@ function App() {
           })}
         </h3>
         <List reminders={reminders} onUpdateAction={setActiveReminderId} />
-        {(addAction || activeReminderId) && (
-          <Form
-            id={activeReminderId}
-            reminder={getFormInfo()}
-            onSave={setReminders}
-          />
+        {isFormActive() && (
+          <div className="reminder-form-modal" onClick={closeForm}>
+            <Form
+              id={activeReminderId}
+              reminder={getActiveReminder()}
+              onSave={setReminders}
+            />
+          </div>
         )}
         <div className="add-button" onClick={handleAddAction}>
-          <img src="/assets/add.png" alt="add" />
-          <span>New Reminder</span>
+          <img
+            className={isFormActive() ? "active" : ""}
+            src="/assets/add.png"
+            alt="add"
+          />
         </div>
       </div>
     </div>

@@ -1,0 +1,41 @@
+.content {
+  min-height: calc(100vh - 44px);
+}
+
+.content > h3 {
+  padding: 24px 16px;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-primary-accent);
+}
+
+.reminder-form-modal {
+  position: fixed;
+  height: 100vh;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-button {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-button img {
+  width: 64px;
+  height: 64px;
+  cursor: pointer;
+  z-index: var(--z-index-1);
+  transition: transform 0.1s linear;
+}
+
+.add-button img.active {
+  transform: rotate(45deg);
+}

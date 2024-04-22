@@ -1,0 +1,81 @@
+.reminder-form {
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: var(--color-primary-light);
+  padding: 24px;
+  border-radius: var(--border-radius-sm);
+}
+
+.reminder-form h2 {
+  font-size: 32px;
+  color: var(--color-primary-accent);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.reminder-form input,
+.reminder-form select {
+  outline: none;
+  border: 3px solid var(--color-primary-light);
+  border-radius: 8px;
+  padding: 8px;
+  font-size: var(--font-size-md);
+}
+
+.reminder-form select span {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #ffcc00;
+}
+
+.reminder-form select span.green {
+  background-color: #28cd41;
+}
+
+.reminder-form select span.red {
+  background-color: #ff3130;
+}
+
+.reminder-form input:focus,
+.reminder-form select:focus {
+  border-color: var(--color-primary-accent);
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 16px;
+}
+
+.form-actions button {
+  border: none;
+  outline: none;
+  flex: 1;
+  height: 30px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary-accent);
+  color: var(--color-white);
+  cursor: pointer;
+}
+
+.form-actions button:hover {
+  opacity: 0.8;
+}
+
+.form-actions button:first-child {
+  background-color: #ff3130;
+}
+
+@media screen and (max-width: 768px) {
+  .reminder-form {
+    width: 80vw;
+  }
+}

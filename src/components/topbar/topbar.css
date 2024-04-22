@@ -10,6 +10,12 @@
 .topbar img {
   width: 24px;
   height: 24px;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.topbar img:hover {
+  background-color: #dddddd;
 }
 
 .topbar .left {
@@ -40,12 +46,13 @@
 
 .account-menu {
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: 28px;
+  right: 28px;
   width: 200px;
   box-shadow: var(--shadow-primary);
   border-radius: 12px;
   background-color: var(--color-white);
+  z-index: var(--z-index-2);
   overflow: hidden;
 }
 
@@ -63,8 +70,8 @@
 }
 
 .account-menu img {
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   cursor: pointer;
 }
 

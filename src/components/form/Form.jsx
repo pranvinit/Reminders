@@ -1,18 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./form.css";
 
-const getFormInfo = (reminder) => ({
+const setFormData = (reminder) => ({
   text: reminder.text || "",
   date: reminder.date || new Date().toISOString().split("T")[0],
-  color: reminder.color || "yellow",
+  color: reminder.color || "green",
   status: reminder.status || "ongoing",
 });
 
 function Form({ id, reminder, onSave }) {
-  const [info, setInfo] = useState(getFormInfo(reminder));
+  const textInputRef = useRef(null);
+  const [info, setInfo] = useState(setFormData(reminder));
 
   useEffect(() => {
-    setInfo(getFormInfo(reminder));
+    textInputRef.current.focus();
+    setInfo(setFormData(reminder));
   }, [reminder]);
 
   const handleInfo = ({ target }) => {
@@ -46,12 +48,23 @@ function Form({ id, reminder, onSave }) {
       });
     }
 
-    setInfo(getFormInfo({}));
+    setInfo(setFormData({}));
+  };
+
+  const handleRemove = () => {
+    onSave((prev) => prev.filter((reminder) => reminder.id !== id));
+    setInfo(setFormData({}));
   };
 
   return (
-    <form className="reminder-form" onSubmit={handleSave}>
+    <form
+      className="reminder-form"
+      onClick={(e) => e.stopPropagation()}
+      onSubmit={handleSave}
+    >
+      <h2>{id ? "Edit" : "Add"} Reminder</h2>
       <input
+        ref={textInputRef}
         type="text"
         placeholder="Reminder text"
         value={info.text}
@@ -61,16 +74,19 @@ function Form({ id, reminder, onSave }) {
       />
       <input type="date" value={info.date} name="date" onChange={handleInfo} />
       <select value={info.color} name="color" onChange={handleInfo}>
-        <option value="blue">Yellow</option>
-        <option value="green">Green</option>
-        <option value="red">Red</option>
+        <option value="green">Low</option>
+        <option value="yellow">Medium</option>
+        <option value="red">High</option>
       </select>
       <select value={info.status} name="status" onChange={handleInfo}>
         <option value="ongoing">Ongoing</option>
         <option value="completed">Completed</option>
         <option value="overdue">Overdue</option>
       </select>
-      <button>Save</button>
+      <div className="form-actions">
+        <button onClick={handleRemove}>Remove</button>
+        <button type="submit">Save</button>
+      </div>
     </form>
   );
 }
